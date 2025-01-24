@@ -13,6 +13,7 @@
     "lint": "yarn check:eslint && yarn check:prettier",
     "check:eslint": "eslint src/*",
     "check:prettier": "prettier --check .",
+    "update-version": "node gitHash.js",
     "fix:prettier": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },
