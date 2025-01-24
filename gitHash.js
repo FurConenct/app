@@ -9,7 +9,7 @@ const gitHash = execSync('git rev-parse --short HEAD').toString().trim();
 const trimmedGitHash = gitHash.slice(0, -1);
 
 // Path to the cons.js file
-const consFilePath = path.join(process.cwd(), 'src/client/state/cons.ts');
+const consFilePath = path.join(process.cwd(), 'src/client/state/cons.js');
 
 // Read the current contents of the cons.js file
 let consFileContent = fs.readFileSync(consFilePath, 'utf-8');
@@ -20,4 +20,4 @@ consFileContent = consFileContent.replace(/version: '.*?'/, `version: '${trimmed
 // Write the updated content back to the file
 fs.writeFileSync(consFilePath, consFileContent, 'utf-8');
 
-console.log(`Version updated to ${trimmedGitHash} in cons.ts`);
+console.log(`Version updated to ${trimmedGitHash} in cons.js`);
