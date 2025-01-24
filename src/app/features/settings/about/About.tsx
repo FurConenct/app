@@ -41,22 +41,22 @@ export function About({ requestClose }: AboutProps) {
                   <img
                     style={{ width: toRem(60), height: toRem(60) }}
                     src={CinnySVG}
-                    alt="Cinny logo"
+                    alt="FurConnect logo"
                   />
                 </Box>
                 <Box direction="Column" gap="300">
                   <Box direction="Column" gap="100">
                     <Box gap="100" alignItems="End">
-                      <Text size="H3">Cinny</Text>
+                      <Text size="H2">FurConnect</Text>
                       <Text size="T200">v{cons.version}</Text>
                     </Box>
-                    <Text>Yet another matrix client.</Text>
+                    <Text>A chat app for furries by furries.</Text>
                   </Box>
 
                   <Box gap="200" wrap="Wrap">
                     <Button
                       as="a"
-                      href="https://github.com/cinnyapp/cinny"
+                      href="https://github.com/FurConnect/app"
                       rel="noreferrer noopener"
                       target="_blank"
                       variant="Secondary"
@@ -69,7 +69,7 @@ export function About({ requestClose }: AboutProps) {
                     </Button>
                     <Button
                       as="a"
-                      href="https://cinny.in/#sponsor"
+                      href="ko-fi.com/naylahanegan"
                       rel="noreferrer noopener"
                       target="_blank"
                       variant="Critical"

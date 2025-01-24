@@ -8,7 +8,7 @@
         <img alt="Follow on Mastodon" src="https://img.shields.io/mastodon/follow/106845779685925461?domain=https%3A%2F%2Ffosstodon.org&logo=mastodon&style=social"></a>
     <a href="https://twitter.com/intent/follow?screen_name=cinnyapp">
         <img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/cinnyapp?logo=twitter&style=social"></a>
-    <a href="https://cinny.in/#sponsor">
+    <a href="ko-fi.com/naylahanegan">
         <img alt="Sponsor FurConnect" src="https://img.shields.io/opencollective/all/cinny?logo=opencollective&style=social"></a>
 </p>
 
@@ -21,9 +21,9 @@ A Matrix client focusing primarily on simple, elegant and secure interface. The 
 ## Getting started
 * Web app is available at https://app.cinny.in and gets updated on each new release. The `dev` branch is continuously deployed at https://dev.cinny.in but keep in mind that it could have things broken.
 
-* You can also download our desktop app from [cinny-desktop repository](https://github.com/cinnyapp/cinny-desktop).
+* You can also download our desktop app from [cinny-desktop repository](https://github.com/FurConnect/app-desktop).
 
-* To host FurConnect on your own, download tarball of the app from [GitHub release](https://github.com/cinnyapp/cinny/releases/latest).
+* To host FurConnect on your own, download tarball of the app from [GitHub release](https://github.com/FurConnect/app/releases/latest).
 You can serve the application with a webserver of your choice by simply copying `dist/` directory to the webroot. 
 To set default Homeserver on login, register and Explore Community page, place a customized [`config.json`](config.json) in webroot of your choice.
 You will also need to setup redirects to serve the assests. An example setting of redirects for netlify is done in [`netlify.toml`](netlify.toml). You can also set `hashRouter.enabled = true` in [`config.json`](config.json) if you have trouble setting redirects.
@@ -33,7 +33,7 @@ To deploy on subdirectory, you need to rebuild the app youself after updating th
     ```
     docker pull ajbura/cinny
     ```
-    or [ghcr image](https://github.com/cinnyapp/cinny/pkgs/container/cinny) by:
+    or [ghcr image](https://github.com/FurConnect/app/pkgs/container/cinny) by:
     ```
     docker pull ghcr.io/cinnyapp/cinny:latest
     ```

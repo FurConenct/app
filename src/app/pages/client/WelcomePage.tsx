@@ -20,7 +20,7 @@ export function WelcomePage() {
               <span>
                 A chat app for furries by furries..{' '}
                 <a
-                  href="https://github.com/cinnyapp/cinny/releases"
+                  href="https://github.com/FurConnect/app/releases"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -33,7 +33,7 @@ export function WelcomePage() {
               <Box grow="Yes" style={{ maxWidth: toRem(300) }} direction="Column" gap="300">
                 <Button
                   as="a"
-                  href="https://github.com/cinnyapp/cinny"
+                  href="https://github.com/FurConnect/app"
                   target="_blank"
                   rel="noreferrer noopener"
                   before={<Icon size="200" src={Icons.Code} />}
@@ -44,7 +44,7 @@ export function WelcomePage() {
                 </Button>
                 <Button
                   as="a"
-                  href="https://cinny.in/#sponsor"
+                  href="ko-fi.com/naylahanegan"
                   target="_blank"
                   rel="noreferrer noopener"
                   fill="Soft"

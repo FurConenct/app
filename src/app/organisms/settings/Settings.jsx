@@ -425,7 +425,7 @@ function AboutSection() {
               <Button onClick={() => window.open('https://github.com/ajbura/cinny')}>
                 Source code
               </Button>
-              <Button onClick={() => window.open('https://cinny.in/#sponsor')}>Support</Button>
+              <Button onClick={() => window.open('ko-fi.com/naylahanegan')}>Support</Button>
               <Button onClick={() => clearCacheAndReload(mx)} variant="danger">
                 Clear cache & reload
               </Button>
