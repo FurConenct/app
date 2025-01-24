@@ -1,7 +1,7 @@
 {
   "name": "cinny",
   "version": "4.2.3",
-  "description": "Yet another matrix client",
+  "description": "A chat app for furries by furries.",
   "main": "index.js",
   "type": "module",
   "engines": {

@@ -410,16 +410,16 @@ function AboutSection() {
       <div className="settings-about__card">
         <MenuHeader>Application</MenuHeader>
         <div className="settings-about__branding">
-          <img width="60" height="60" src={CinnySVG} alt="Cinny logo" />
+          <img width="60" height="60" src={CinnySVG} alt="FurConnect logo" />
           <div>
             <Text variant="h2" weight="medium">
-              Cinny
+              FurConnect
               <span
                 className="text text-b3"
                 style={{ margin: '0 var(--sp-extra-tight)' }}
               >{`v${cons.version}`}</span>
             </Text>
-            <Text>Yet another matrix client</Text>
+            <Text>A chat app for furries by furries.</Text>
 
             <div className="settings-about__btns">
               <Button onClick={() => window.open('https://github.com/ajbura/cinny')}>

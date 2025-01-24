@@ -1,4 +1,4 @@
-# Cinny
+# FurConnect
 <p>
     <a href="https://github.com/ajbura/cinny/releases">
         <img alt="GitHub release downloads" src="https://img.shields.io/github/downloads/ajbura/cinny/total?logo=github&style=social"></a>
@@ -9,7 +9,7 @@
     <a href="https://twitter.com/intent/follow?screen_name=cinnyapp">
         <img alt="Follow on Twitter" src="https://img.shields.io/twitter/follow/cinnyapp?logo=twitter&style=social"></a>
     <a href="https://cinny.in/#sponsor">
-        <img alt="Sponsor Cinny" src="https://img.shields.io/opencollective/all/cinny?logo=opencollective&style=social"></a>
+        <img alt="Sponsor FurConnect" src="https://img.shields.io/opencollective/all/cinny?logo=opencollective&style=social"></a>
 </p>
 
 A Matrix client focusing primarily on simple, elegant and secure interface. The main goal is to have an instant messaging application that is easy on people and has a modern touch.
@@ -23,7 +23,7 @@ A Matrix client focusing primarily on simple, elegant and secure interface. The 
 
 * You can also download our desktop app from [cinny-desktop repository](https://github.com/cinnyapp/cinny-desktop).
 
-* To host Cinny on your own, download tarball of the app from [GitHub release](https://github.com/cinnyapp/cinny/releases/latest).
+* To host FurConnect on your own, download tarball of the app from [GitHub release](https://github.com/cinnyapp/cinny/releases/latest).
 You can serve the application with a webserver of your choice by simply copying `dist/` directory to the webroot. 
 To set default Homeserver on login, register and Explore Community page, place a customized [`config.json`](config.json) in webroot of your choice.
 You will also need to setup redirects to serve the assests. An example setting of redirects for netlify is done in [`netlify.toml`](netlify.toml). You can also set `hashRouter.enabled = true` in [`config.json`](config.json) if you have trouble setting redirects.

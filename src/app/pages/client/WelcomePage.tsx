@@ -14,11 +14,11 @@ export function WelcomePage() {
       >
         <PageHeroSection>
           <PageHero
-            icon={<img width="70" height="70" src={CinnySVG} alt="Cinny Logo" />}
-            title="Welcome to Cinny"
+            icon={<img width="70" height="70" src={CinnySVG} alt="FurConnect Logo" />}
+            title="Welcome to FurConnect"
             subTitle={
               <span>
-                Yet another matrix client.{' '}
+                A chat app for furries by furries..{' '}
                 <a
                   href="https://github.com/cinnyapp/cinny/releases"
                   target="_blank"

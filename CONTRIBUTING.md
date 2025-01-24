@@ -1,4 +1,4 @@
-# Contributing to Cinny
+# Contributing to FurConnect
 
 First off, thanks for taking the time to contribute! ❤️
 
