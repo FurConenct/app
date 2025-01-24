@@ -76,6 +76,7 @@ import { getViaServers } from '../../../plugins/via-servers';
 import { useMediaAuthentication } from '../../../hooks/useMediaAuthentication';
 import { useRoomPinnedEvents } from '../../../hooks/useRoomPinnedEvents';
 import { StateEvent } from '../../../../types/matrix/room';
+import { useTouchOffset } from '../../../hooks/useTouchOffset';
 
 export type ReactionHandler = (keyOrMxc: string, shortcode: string) => void;
 
@@ -666,7 +667,7 @@ export type MessageProps = {
   messageSpacing: MessageSpacing;
   onUserClick: MouseEventHandler<HTMLButtonElement>;
   onUsernameClick: MouseEventHandler<HTMLButtonElement>;
-  onReplyClick: MouseEventHandler<HTMLButtonElement>;
+  onReply: (replyId: string) => void;
   onEditId?: (eventId?: string) => void;
   onReactionToggle: (targetEventId: string, key: string, shortcode?: string) => void;
   reply?: ReactNode;
@@ -690,7 +691,7 @@ export const Message = as<'div', MessageProps>(
       messageSpacing,
       onUserClick,
       onUsernameClick,
-      onReplyClick,
+      onReply,
       onReactionToggle,
       onEditId,
       reply,
@@ -708,6 +709,21 @@ export const Message = as<'div', MessageProps>(
     const { focusWithinProps } = useFocusWithin({ onFocusWithinChange: setHover });
     const [menuAnchor, setMenuAnchor] = useState<RectCords>();
     const [emojiBoardAnchor, setEmojiBoardAnchor] = useState<RectCords>();
+    // Swipe left gesture that, if it is pulled to the left by 20% of screen width, trigger a reply
+    const { offset, onTouchStart, onTouchEnd, onTouchMove } = useTouchOffset({ offsetLimit: [-0.25 * window.innerWidth, 0, 0, 0], touchEndCallback: ([x]) => {
+      if (x < -0.2 * window.innerWidth)
+        onReply(mEvent.getId()!);
+    }});
+
+    // Wrapper of the new onReply for the old onReplyClick
+    const onReplyClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
+      const replyId = evt.currentTarget.getAttribute('data-event-id');
+      if (!replyId) {
+        console.warn('Button should have "data-event-id" attribute!');
+        return;
+      }
+      onReply(replyId);
+    }, []);
 
     const senderDisplayName =
       getMemberDisplayName(room, senderId) ?? getMxIdLocalPart(senderId) ?? senderId;
@@ -716,7 +732,7 @@ export const Message = as<'div', MessageProps>(
     const headerJSX = !collapse && (
       <Box
         gap="300"
-        direction={messageLayout === 1 ? 'RowReverse' : 'Row'}
+        direction={messageLayout === MessageLayout.Compact ? 'RowReverse' : 'Row'}
         justifyContent="SpaceBetween"
         alignItems="Baseline"
         grow="Yes"
@@ -728,12 +744,12 @@ export const Message = as<'div', MessageProps>(
           onContextMenu={onUserClick}
           onClick={onUsernameClick}
         >
-          <Text as="span" size={messageLayout === 2 ? 'T300' : 'T400'} truncate>
+          <Text as="span" size={messageLayout === MessageLayout.Bubble ? 'T300' : 'T400'} truncate>
             <b>{senderDisplayName}</b>
           </Text>
         </Username>
         <Box shrink="No" gap="100">
-          {messageLayout === 0 && hover && (
+          {messageLayout === MessageLayout.Modern && hover && (
             <>
               <Text as="span" size="T200" priority="300">
                 {senderId}
@@ -743,12 +759,12 @@ export const Message = as<'div', MessageProps>(
               </Text>
             </>
           )}
-          <Time ts={mEvent.getTs()} compact={messageLayout === 1} />
+          <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
         </Box>
       </Box>
     );
 
-    const avatarJSX = !collapse && messageLayout !== 1 && (
+    const avatarJSX = !collapse && messageLayout !== MessageLayout.Compact && (
       <AvatarBase>
         <Avatar
           className={css.MessageAvatar}
@@ -838,6 +854,10 @@ export const Message = as<'div', MessageProps>(
         collapse={collapse}
         highlight={highlight}
         selected={!!menuAnchor || !!emojiBoardAnchor}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        style={{ transform: `translateX(${offset[0]}px)`, transition: offset[0] ? "none" : "" }}
         {...props}
         {...hoverProps}
         {...focusWithinProps}
@@ -1043,18 +1063,18 @@ export const Message = as<'div', MessageProps>(
             </Menu>
           </div>
         )}
-        {messageLayout === 1 && (
+        {messageLayout === MessageLayout.Compact && (
           <CompactLayout before={headerJSX} onContextMenu={handleContextMenu}>
             {msgContentJSX}
           </CompactLayout>
         )}
-        {messageLayout === 2 && (
+        {messageLayout === MessageLayout.Bubble && (
           <BubbleLayout before={avatarJSX} onContextMenu={handleContextMenu}>
             {headerJSX}
             {msgContentJSX}
           </BubbleLayout>
         )}
-        {messageLayout !== 1 && messageLayout !== 2 && (
+        {messageLayout !== MessageLayout.Compact && messageLayout !== MessageLayout.Bubble && (
           <ModernLayout before={avatarJSX} onContextMenu={handleContextMenu}>
             {headerJSX}
             {msgContentJSX}

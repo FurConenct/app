@@ -85,7 +85,7 @@ import {
   reactionOrEditEvent,
 } from '../../utils/room';
 import { useSetting } from '../../state/hooks/settings';
-import { settingsAtom } from '../../state/settings';
+import { MessageLayout, settingsAtom } from '../../state/settings';
 import { openProfileViewer } from '../../../client/action/navigation';
 import { useMatrixEventRenderer } from '../../hooks/useMatrixEventRenderer';
 import { Reactions, Message, Event, EncryptedContent } from './message';
@@ -117,6 +117,10 @@ import { useMentionClickHandler } from '../../hooks/useMentionClickHandler';
 import { useSpoilerClickHandler } from '../../hooks/useSpoilerClickHandler';
 import { useRoomNavigate } from '../../hooks/useRoomNavigate';
 import { useMediaAuthentication } from '../../hooks/useMediaAuthentication';
+import { useTouchOffset } from '../../hooks/useTouchOffset';
+import { PageRoot } from '../../components/page';
+import { Space } from '../../pages/client/space';
+import { ScreenSize, useScreenSizeContext } from '../../hooks/useScreenSize';
 
 const TimelineFloat = as<'div', css.TimelineFloatVariants>(
   ({ position, className, ...props }, ref) => (
@@ -888,13 +892,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
     [mx, room, editor]
   );
 
-  const handleReplyClick: MouseEventHandler<HTMLButtonElement> = useCallback(
-    (evt) => {
-      const replyId = evt.currentTarget.getAttribute('data-event-id');
-      if (!replyId) {
-        console.warn('Button should have "data-event-id" attribute!');
-        return;
-      }
+  // This is been changed to accept the replyId directly instead of a mouse event in order to be used for swipe left reply.
+  const handleReply = useCallback(
+    (replyId: string) => {
       const replyEvt = room.findEventById(replyId);
       if (!replyEvt) return;
       const editedReply = getEditedEvent(replyId, replyEvt, room.getUnfilteredTimelineSet());
@@ -990,7 +990,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
             relations={hasReactions ? reactionRelations : undefined}
             onUserClick={handleUserClick}
             onUsernameClick={handleUsernameClick}
-            onReplyClick={handleReplyClick}
+            onReply={handleReply}
             onReactionToggle={handleReactionToggle}
             onEditId={handleEdit}
             reply={
@@ -1030,7 +1030,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
                 urlPreview={showUrlPreview}
                 htmlReactParserOptions={htmlReactParserOptions}
                 linkifyOpts={linkifyOpts}
-                outlineAttachment={messageLayout === 2}
+                outlineAttachment={messageLayout === MessageLayout.Bubble}
               />
             )}
           </Message>
@@ -1062,7 +1062,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
             relations={hasReactions ? reactionRelations : undefined}
             onUserClick={handleUserClick}
             onUsernameClick={handleUsernameClick}
-            onReplyClick={handleReplyClick}
+            onReply={handleReply}
             onReactionToggle={handleReactionToggle}
             onEditId={handleEdit}
             reply={
@@ -1126,7 +1126,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
                       urlPreview={showUrlPreview}
                       htmlReactParserOptions={htmlReactParserOptions}
                       linkifyOpts={linkifyOpts}
-                      outlineAttachment={messageLayout === 2}
+                      outlineAttachment={messageLayout === MessageLayout.Bubble}
                     />
                   );
                 }
@@ -1170,7 +1170,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
             relations={hasReactions ? reactionRelations : undefined}
             onUserClick={handleUserClick}
             onUsernameClick={handleUsernameClick}
-            onReplyClick={handleReplyClick}
+            onReply={handleReply}
             onReactionToggle={handleReactionToggle}
             reactions={
               reactionRelations && (
@@ -1211,7 +1211,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
         const highlighted = focusItem?.index === item && focusItem.highlight;
         const parsed = parseMemberEvent(mEvent);
 
-        const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+        const timeJSX = (
+          <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+        );
 
         return (
           <Event
@@ -1244,7 +1246,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
         const senderId = mEvent.getSender() ?? '';
         const senderName = getMemberDisplayName(room, senderId) || getMxIdLocalPart(senderId);
 
-        const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+        const timeJSX = (
+          <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+        );
 
         return (
           <Event
@@ -1278,7 +1282,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
         const senderId = mEvent.getSender() ?? '';
         const senderName = getMemberDisplayName(room, senderId) || getMxIdLocalPart(senderId);
 
-        const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+        const timeJSX = (
+          <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+        );
 
         return (
           <Event
@@ -1312,7 +1318,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
         const senderId = mEvent.getSender() ?? '';
         const senderName = getMemberDisplayName(room, senderId) || getMxIdLocalPart(senderId);
 
-        const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+        const timeJSX = (
+          <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+        );
 
         return (
           <Event
@@ -1348,7 +1356,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
       const senderId = mEvent.getSender() ?? '';
       const senderName = getMemberDisplayName(room, senderId) || getMxIdLocalPart(senderId);
 
-      const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+      const timeJSX = (
+        <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+      );
 
       return (
         <Event
@@ -1389,7 +1399,9 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
       const senderId = mEvent.getSender() ?? '';
       const senderName = getMemberDisplayName(room, senderId) || getMxIdLocalPart(senderId);
 
-      const timeJSX = <Time ts={mEvent.getTs()} compact={messageLayout === 1} />;
+      const timeJSX = (
+        <Time ts={mEvent.getTs()} compact={messageLayout === MessageLayout.Compact} />
+      );
 
       return (
         <Event
@@ -1544,7 +1556,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
             <div
               style={{
                 padding: `${config.space.S700} ${config.space.S400} ${config.space.S600} ${
-                  messageLayout === 1 ? config.space.S400 : toRem(64)
+                  messageLayout === MessageLayout.Compact ? config.space.S400 : toRem(64)
                 }`,
               }}
             >
@@ -1552,7 +1564,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
             </div>
           )}
           {(canPaginateBack || !rangeAtStart) &&
-            (messageLayout === 1 ? (
+            (messageLayout === MessageLayout.Compact ? (
               <>
                 <MessageBase>
                   <CompactPlaceholder key={getItems().length} />
@@ -1587,7 +1599,7 @@ export function RoomTimeline({ room, eventId, roomInputRef, editor }: RoomTimeli
           {getItems().map(eventRenderer)}
 
           {(!liveTimelineLinked || !rangeAtEnd) &&
-            (messageLayout === 1 ? (
+            (messageLayout === MessageLayout.Compact ? (
               <>
                 <MessageBase ref={observeFrontAnchor}>
                   <CompactPlaceholder key={getItems().length} />
