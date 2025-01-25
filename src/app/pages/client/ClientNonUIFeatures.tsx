@@ -5,7 +5,7 @@ import { RoomEvent, RoomEventHandlerMap } from 'matrix-js-sdk';
 import { roomToUnreadAtom, unreadEqual, unreadInfoToUnread } from '../../state/room/roomToUnread';
 import LogoSVG from '../../../../public/res/png/cinny.png';
 import LogoUnreadSVG from '../../../../public/res/svg/cinny-unread.svg';
-import LogoHighlightSVG from '../../../../public/res/png/cinny-highlight.svg';
+import LogoHighlightSVG from '../../../../public/res/svg/cinny-highlight.svg';
 import NotificationSound from '../../../../public/sound/notification.ogg';
 import InviteSound from '../../../../public/sound/invite.ogg';
 import { setFavicon } from '../../utils/dom';
