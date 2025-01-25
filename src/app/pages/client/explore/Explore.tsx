@@ -87,17 +87,7 @@ export function AddServer() {
           </FocusTrap>
         </OverlayCenter>
       </Overlay>
-      <Button
-        variant="Secondary"
-        fill="Soft"
-        size="300"
-        before={<Icon size="100" src={Icons.Plus} />}
-        onClick={() => setDialog(true)}
-      >
-        <Text size="B300" truncate>
-          Add Server
-        </Text>
-      </Button>
+
     </>
   );
 }
