@@ -54,8 +54,8 @@ export function FeaturedRooms() {
                 <PageHeroSection>
                   <PageHero
                     icon={<Icon size="600" src={Icons.Bulb} />}
-                    title="Featured by Client"
-                    subTitle="Find and explore public rooms and spaces featured by client provider."
+                    title="Featured by FurConnect"
+                    subTitle="Find and explore public rooms and spaces featured by FurConenct."
                   />
                 </PageHeroSection>
                 <Box direction="Column" gap="700">

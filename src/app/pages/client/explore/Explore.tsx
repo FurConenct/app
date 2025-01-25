@@ -84,59 +84,6 @@ export function AddServer() {
               escapeDeactivates: stopPropagation,
             }}
           >
-            <Dialog variant="Surface">
-              <Header
-                style={{
-                  padding: `0 ${config.space.S200} 0 ${config.space.S400}`,
-                  borderBottomWidth: config.borderWidth.B300,
-                }}
-                variant="Surface"
-                size="500"
-              >
-                <Box grow="Yes">
-                  <Text size="H4">Add Server</Text>
-                </Box>
-                <IconButton size="300" onClick={() => setDialog(false)} radii="300">
-                  <Icon src={Icons.Cross} />
-                </IconButton>
-              </Header>
-              <Box
-                as="form"
-                onSubmit={handleSubmit}
-                style={{ padding: config.space.S400 }}
-                direction="Column"
-                gap="400"
-              >
-                <Text priority="400">Add server name to explore public communities.</Text>
-                <Box direction="Column" gap="100">
-                  <Text size="L400">Server Name</Text>
-                  <Input ref={serverInputRef} name="serverInput" variant="Background" required />
-                  {exploreState.status === AsyncStatus.Error && (
-                    <Text style={{ color: color.Critical.Main }} size="T300">
-                      Failed to load public rooms. Please try again.
-                    </Text>
-                  )}
-                </Box>
-                <Box direction="Column" gap="200">
-                  {/* <Button
-                    type="submit"
-                    variant="Secondary"
-                    before={
-                      exploreState.status === AsyncStatus.Loading ? (
-                        <Spinner fill="Solid" variant="Secondary" size="200" />
-                      ) : undefined
-                    }
-                    aria-disabled={exploreState.status === AsyncStatus.Loading}
-                  >
-                    <Text size="B400">Save</Text>
-                  </Button> */}
-
-                  <Button type="submit" onClick={handleView} variant="Secondary" fill="Soft">
-                    <Text size="B400">View</Text>
-                  </Button>
-                </Box>
-              </Box>
-            </Dialog>
           </FocusTrap>
         </OverlayCenter>
       </Overlay>
@@ -191,7 +138,7 @@ export function Explore() {
                     </Avatar>
                     <Box as="span" grow="Yes">
                       <Text as="span" size="Inherit" truncate>
-                        Featured
+                        Featured Rooms
                       </Text>
                     </Box>
                   </Box>
@@ -216,7 +163,7 @@ export function Explore() {
                       </Avatar>
                       <Box as="span" grow="Yes">
                         <Text as="span" size="Inherit" truncate>
-                          {userServer}
+                          All Rooms
                         </Text>
                       </Box>
                     </Box>
