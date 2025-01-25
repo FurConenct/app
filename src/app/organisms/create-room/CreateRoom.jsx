@@ -74,7 +74,7 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
         topic,
         joinRule,
         alias: roomAlias,
-        isEncrypted: isSpace || joinRule === 'public' ? false : isEncrypted,
+        isEncrypted: false,
         powerLevel,
         isSpace,
         parentId,
@@ -193,17 +193,6 @@ function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
               </Text>
             )}
           </div>
-        )}
-        {!isSpace && joinRule !== 'public' && (
-          <SettingTile
-            title="Enable end-to-end encryption"
-            options={<Toggle isActive={isEncrypted} onToggle={setIsEncrypted} />}
-            content={
-              <Text variant="b3">
-                You can’t disable this later. Bridges & most bots won’t work yet.
-              </Text>
-            }
-          />
         )}
         <SettingTile
           title="Select your role"
