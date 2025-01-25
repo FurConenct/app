@@ -485,7 +485,7 @@ export function PublicRooms() {
                 before={<Icon size="100" src={Icons.ArrowLeft} />}
                 onClick={handleSearchClear}
               >
-                <Text size="T300">{server}</Text>
+                <Text size="T300">All Rooms</Text>
               </Chip>
             </Box>
 

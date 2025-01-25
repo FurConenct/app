@@ -128,7 +128,7 @@ export function FeaturedRooms() {
                     >
                       <Icon size="400" src={Icons.Info} />
                       <Text size="T300" align="Center">
-                        No rooms or spaces featured by client provider.
+                        No rooms or spaces featured by FurConnect.
                       </Text>
                     </Box>
                   )}
