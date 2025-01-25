@@ -69,7 +69,7 @@ export function About({ requestClose }: AboutProps) {
                     </Button>
                     <Button
                       as="a"
-                      href="ko-fi.com/naylahanegan"
+                      href="https://ko-fi.com/naylahanegan"
                       rel="noreferrer noopener"
                       target="_blank"
                       variant="Critical"

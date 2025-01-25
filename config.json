@@ -3,9 +3,5 @@
   "homeserverList": [
       "matrix.furconnect.org"
   ],
-  "allowCustomHomeservers": false,
-  "hashRouter": {
-    "enabled": false,
-    "basename": "/"
-  }
+  "allowCustomHomeservers": false
 }

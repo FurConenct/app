@@ -44,7 +44,7 @@ export function WelcomePage() {
                 </Button>
                 <Button
                   as="a"
-                  href="ko-fi.com/naylahanegan"
+                  href="https://ko-fi.com/naylahanegan"
                   target="_blank"
                   rel="noreferrer noopener"
                   fill="Soft"

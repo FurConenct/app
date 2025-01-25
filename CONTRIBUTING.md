@@ -9,7 +9,7 @@ All types of contributions are encouraged and valued. Please make sure to read t
 > - Tweet about it (tag @cinnyapp)
 > - Refer this project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
-> - [Donate to us](ko-fi.com/naylahanegan)
+> - [Donate to us](https://ko-fi.com/naylahanegan)
 
 ## Bug reports
 
