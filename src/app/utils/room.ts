@@ -318,10 +318,10 @@ export const parseReplyFormattedBody = (
   eventId: string,
   formattedBody: string
 ): string => {
-  const replyToLink = `<a href="https://matrix.to/#/${encodeURIComponent(
+  const replyToLink = `<a href="https://furconnect.org/#/${encodeURIComponent(
     roomId
   )}/${encodeURIComponent(eventId)}">In reply to</a>`;
-  const userLink = `<a href="https://matrix.to/#/${encodeURIComponent(userId)}">${userId}</a>`;
+  const userLink = `<a href="https://furconnect.org/#/${encodeURIComponent(userId)}">${userId}</a>`;
 
   return `<mx-reply><blockquote>${replyToLink}${userLink}<br />${formattedBody}</blockquote></mx-reply>`;
 };

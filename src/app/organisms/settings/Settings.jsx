@@ -40,7 +40,7 @@ import InfoIC from '../../../../public/res/ic/outlined/info.svg';
 import PowerIC from '../../../../public/res/ic/outlined/power.svg';
 import CrossIC from '../../../../public/res/ic/outlined/cross.svg';
 
-import CinnySVG from '../../../../public/res/png/cinny.svg';
+import CinnySVG from '../../../../public/res/png/cinny.png';
 import { confirmDialog } from '../../molecules/confirm-dialog/ConfirmDialog';
 import { useSetting } from '../../state/hooks/settings';
 import { settingsAtom } from '../../state/settings';
@@ -425,7 +425,7 @@ function AboutSection() {
               <Button onClick={() => window.open('https://github.com/ajbura/cinny')}>
                 Source code
               </Button>
-              <Button onClick={() => window.open('ko-fi.com/naylahanegan')}>Support</Button>
+              <Button onClick={() => window.open('https://ko-fi.com/naylahanegan')}>Support</Button>
               <Button onClick={() => clearCacheAndReload(mx)} variant="danger">
                 Clear cache & reload
               </Button>

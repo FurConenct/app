@@ -35,7 +35,7 @@ import { useMatrixClient } from '../../hooks/useMatrixClient';
 
 function CreateRoomContent({ isSpace, parentId, onRequestClose }) {
   const [joinRule, setJoinRule] = useState(parentId ? 'restricted' : 'invite');
-  const [isEncrypted, setIsEncrypted] = useState(true);
+  const [isEncrypted, setIsEncrypted] = useState(false);
   const [isCreatingRoom, setIsCreatingRoom] = useState(false);
   const [creatingError, setCreatingError] = useState(null);
   const { navigateRoom, navigateSpace } = useRoomNavigate();

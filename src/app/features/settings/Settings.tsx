@@ -56,11 +56,6 @@ const useSettingsMenuItems = (): SettingsMenuItem[] =>
         icon: Icons.Category,
       },
       {
-        page: SettingsPages.EncryptionPage,
-        name: 'Encryption',
-        icon: Icons.ShieldLock,
-      },
-      {
         page: SettingsPages.EmojisStickersPage,
         name: 'Emojis & Stickers',
         icon: Icons.Smile,

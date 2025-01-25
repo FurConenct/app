@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Icon, Icons, Text, config, toRem } from 'folds';
 import { Page, PageHero, PageHeroSection } from '../../components/page';
-import CinnySVG from '../../../../public/res/png/cinny.svg';
+import CinnySVG from '../../../../public/res/png/cinny.png';
 
 export function WelcomePage() {
   return (
@@ -44,7 +44,7 @@ export function WelcomePage() {
                 </Button>
                 <Button
                   as="a"
-                  href="ko-fi.com/naylahanegan"
+                  href="https://ko-fi.com/naylahanegan"
                   target="_blank"
                   rel="noreferrer noopener"
                   fill="Soft"

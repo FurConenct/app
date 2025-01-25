@@ -4,7 +4,7 @@ import { Page, PageContent, PageHeader } from '../../../components/page';
 import { SequenceCard } from '../../../components/sequence-card';
 import { SequenceCardStyle } from '../styles.css';
 import { SettingTile } from '../../../components/setting-tile';
-import CinnySVG from '../../../../../public/res/png/cinny.svg';
+import CinnySVG from '../../../../../public/res/png/cinny.png';
 import cons from '../../../../client/state/cons';
 import { clearCacheAndReload } from '../../../../client/initMatrix';
 import { useMatrixClient } from '../../../hooks/useMatrixClient';
@@ -69,7 +69,7 @@ export function About({ requestClose }: AboutProps) {
                     </Button>
                     <Button
                       as="a"
-                      href="ko-fi.com/naylahanegan"
+                      href="https://ko-fi.com/naylahanegan"
                       rel="noreferrer noopener"
                       target="_blank"
                       variant="Critical"
