@@ -61,7 +61,7 @@ const elementToCustomHtml = (node: CustomElement, children: string): string => {
         fragment += `?${node.viaServers.map((server) => `via=${server}`).join('&')}`;
       }
 
-      const matrixTo = `https://matrix.to/#/${fragment}`;
+      const matrixTo = `https://furconnect.org/#/${fragment}`;
       return `<a href="${encodeURI(matrixTo)}">${sanitizeText(node.name)}</a>`;
     }
     case BlockType.Emoticon:
